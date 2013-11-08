@@ -34,6 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 			'php' => '5.3.0-0.0.0',
 			'extbase' => '',
 			'fluid' => '',
+			'news' => '',
 		),
 		'conflicts' => array(
 		),
