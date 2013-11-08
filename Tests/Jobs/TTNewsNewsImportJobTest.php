@@ -1,4 +1,6 @@
 <?php
+namespace BeechIt\NewsTtnewsimport\Tests\Unit\Jobs;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -28,7 +30,7 @@
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class Tx_NewsTtnewsimport_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class TTNewsNewsImportJobTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 
 	/**
 	 * Test getNumberOfRecordsPerRunReturnsExpectedValue
@@ -37,10 +39,7 @@ class Tx_NewsTtnewsimport_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Ext
 	 * @return void
 	 */
 	public function getNumberOfRecordsPerRunReturnsExpectedValue() {
-		$jobInstance = $this->objectManager->get('Tx_NewsTtnewsimport_Jobs_TTNewsNewsImportJob');
+		$jobInstance = $this->objectManager->get('BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsNewsImportJob');
 		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
-
 	}
 }
-
-?>

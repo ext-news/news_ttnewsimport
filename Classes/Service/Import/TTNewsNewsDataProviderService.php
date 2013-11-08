@@ -1,4 +1,6 @@
 <?php
+namespace BeechIt\NewsTtnewsimport\Service\Import;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -22,13 +24,15 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * tt_news ImportService
  *
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class Tx_NewsTtnewsimport_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
+class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
 
 	protected $importSource = 'TT_NEWS_IMPORT';
 
@@ -113,7 +117,7 @@ class Tx_NewsTtnewsimport_Service_Import_TTNewsNewsDataProviderService implement
 
 		$relatedFiles = array();
 
-		$files = t3lib_div::trimExplode(',', $row['news_files']);
+		$files = GeneralUtility::trimExplode(',', $row['news_files']);
 
 		foreach ($files as $file) {
 			$relatedFiles[] = array(
@@ -159,10 +163,10 @@ class Tx_NewsTtnewsimport_Service_Import_TTNewsNewsDataProviderService implement
 			return $media;
 		}
 
-		$images = t3lib_div::trimExplode(',', $row['image'], TRUE);
-		$captions = t3lib_div::trimExplode(chr(10), $row['imagecaption'], FALSE);
-		$alts = t3lib_div::trimExplode(chr(10), $row['imagealttext'], FALSE);
-		$titles = t3lib_div::trimExplode(chr(10), $row['imagetitletext'], FALSE);
+		$images = GeneralUtility::trimExplode(',', $row['image'], TRUE);
+		$captions = GeneralUtility::trimExplode(chr(10), $row['imagecaption'], FALSE);
+		$alts = GeneralUtility::trimExplode(chr(10), $row['imagealttext'], FALSE);
+		$titles = GeneralUtility::trimExplode(chr(10), $row['imagetitletext'], FALSE);
 
 		$i = 0;
 		foreach ($images as $image) {
@@ -195,7 +199,7 @@ class Tx_NewsTtnewsimport_Service_Import_TTNewsNewsDataProviderService implement
 
 		$newsLinks = str_replace(array('<link ', '</link>'), array('<LINK ', '</LINK>'), $newsLinks);
 
-		$linkList = t3lib_div::trimExplode('</LINK>', $newsLinks, TRUE);
+		$linkList = GeneralUtility::trimExplode('</LINK>', $newsLinks, TRUE);
 		foreach ($linkList as $singleLink) {
 			if (strpos($singleLink, '<LINK') === FALSE) {
 				continue;

@@ -1,4 +1,6 @@
 <?php
+namespace BeechIt\NewsTtnewsimport\Service\Import;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -28,7 +30,7 @@
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class Tx_NewsTtnewsimport_Service_Import_TTNewsCategoryDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
+class TTNewsCategoryDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
 
 	protected $importSource = 'TT_NEWS_CATEGORY_IMPORT';
 

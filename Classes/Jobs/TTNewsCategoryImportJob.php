@@ -1,4 +1,6 @@
 <?php
+namespace BeechIt\NewsTtnewsimport\Jobs;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -28,15 +30,15 @@
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class Tx_News_Jobs_TTNewsCategoryImportJob extends Tx_News_Jobs_AbstractImportJob {
+class TTNewsCategoryImportJob extends \Tx_News_Jobs_AbstractImportJob {
 
 	/**
 	 * Inject import dataprovider service
 	 *
-	 * @param Tx_NewsTtnewsimport_Service_Import_TTNewsCategoryDataProviderService $importDataProviderService
+	 * @param \BeechIt\NewsTtnewsimport\Service\Import\TTNewsCategoryDataProviderService $importDataProviderService
 	 * @return void
 	 */
-	public function injectImportDataProviderService(Tx_NewsTtnewsimport_Service_Import_TTNewsCategoryDataProviderService
+	public function injectImportDataProviderService(\BeechIt\NewsTtnewsimport\Service\Import\TTNewsCategoryDataProviderService
 		$importDataProviderService) {
 
 		$this->importDataProviderService = $importDataProviderService;
@@ -45,11 +47,10 @@ class Tx_News_Jobs_TTNewsCategoryImportJob extends Tx_News_Jobs_AbstractImportJo
 	/**
 	 * Inject import service
 	 *
-	 * @param Tx_NewsTtnewsimport_Domain_Service_CategoryImportService $importService
+	 * @param \Tx_News_Domain_Service_CategoryImportService $importService
 	 * @return void
 	 */
-	public function injectImportService(Tx_NewsTtnewsimport_Domain_Service_CategoryImportService $importService) {
+	public function injectImportService(\Tx_News_Domain_Service_CategoryImportService $importService) {
 		$this->importService = $importService;
 	}
 }
-?>

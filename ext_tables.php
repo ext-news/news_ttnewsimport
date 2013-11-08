@@ -4,13 +4,13 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // show tt_news importer only if tt_news is installed
-if (t3lib_extMgm::isLoaded('tt_news')) {
-	Tx_News_Utility_ImportJob::register(
-		'Tx_News_Jobs_TTNewsNewsImportJob',
-		'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
+if (true || \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news')) {
+	\Tx_News_Utility_ImportJob::register(
+		'BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsNewsImportJob',
+		'LLL:EXT:news_ttnewsimport/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
 		'');
-	Tx_News_Utility_ImportJob::register(
-		'Tx_News_Jobs_TTNewsCategoryImportJob',
-		'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
+	\Tx_News_Utility_ImportJob::register(
+		'BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsCategoryImportJob',
+		'LLL:EXT:news_ttnewsimport/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
 		'');
 }

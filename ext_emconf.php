@@ -15,7 +15,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Importer of ext:tt_news items to ext:news',
 	'category' => 'be',
 	'author' => 'Frans Saris',
-	'author_email' => 'franssaris@gmail.com',
+	'author_email' => 'frans@beech.it',
+	'company' => 'Beech.it',
 	'shy' => '',
 	'priority' => '',
 	'module' => '',
@@ -29,7 +30,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '4.5.5-6.2.99',
+			'typo3' => '6.0.0-6.2.99',
 			'php' => '5.3.0-0.0.0',
 			'extbase' => '',
 			'fluid' => '',
@@ -40,5 +41,3 @@ $EM_CONF[$_EXTKEY] = array(
 		),
 	),
 );
-
-?>

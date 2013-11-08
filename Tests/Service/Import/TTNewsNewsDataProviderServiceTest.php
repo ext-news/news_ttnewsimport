@@ -1,4 +1,6 @@
 <?php
+namespace BeechIt\NewsTtnewsimport\Tests\Service\Import;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -23,19 +25,19 @@
  ***************************************************************/
 
 /**
- * Test class for Tx_News_Service_Import_TTNewsNewsDataProviderService
+ * Test class for \BeechIt\NewsTtnewsimport\Service\Import\TTNewsNewsDataProviderService
  *
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class Tx_NewsTtnewsimport_Tests_Unit_Service_Import_TTNewsNewsDataProviderServiceTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class TTNewsNewsDataProviderServiceTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 
 	/**
 	 * @test
 	 * @dataProvider relatedLinksAreParsedCorrectlyDataProvider
 	 */
 	public function relatedLinksAreParsedCorrectly($given,$expected) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_NewsTtnewsimport_Service_Import_TTNewsNewsDataProviderService', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('BeechIt\\NewsTtnewsimport\\Service\\Import\\TTNewsNewsDataProviderService', array('dummy'));
 		$result = $mockTemplateParser->_call('getRelatedLinks', $given);
 		$this->assertEquals($expected, $result);
 	}
@@ -68,5 +70,3 @@ class Tx_NewsTtnewsimport_Tests_Unit_Service_Import_TTNewsNewsDataProviderServic
 		);
 	}
 }
-
-?>
