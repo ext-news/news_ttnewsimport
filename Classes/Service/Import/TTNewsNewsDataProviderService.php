@@ -65,13 +65,14 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
 			'tt_news',
-			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0',
+			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0 AND',
 			'',
 			'',
 			$offset . ',' . $limit
 		);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+
 			$importData[] = array(
 				'pid' => $row['pid'],
 				'hidden' => $row['hidden'],
@@ -79,9 +80,9 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 				'sys_language_uid' => $row['sys_language_uid'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
-				'title'	=>	$row['title'],
+				'title' => $row['title'],
 				'teaser' => $row['short'],
-				'bodytext' => $row['bodytext'],
+				'bodytext' => str_replace('###YOUTUBEVIDEO###', '', $row['bodytext']),
 				'datetime' => $row['datetime'],
 				'archive' => $row['archivedate'],
 				'author' => $row['author'],
@@ -111,18 +112,28 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 	 * @return array
 	 */
 	protected function getFiles(array $row) {
-		if (empty($row['news_files'])) {
-			return FALSE;
-		}
-
 		$relatedFiles = array();
 
-		$files = GeneralUtility::trimExplode(',', $row['news_files']);
+		// tx_damnews_dam_media
+		if (!empty($row['tx_damnews_dam_media'])) {
 
-		foreach ($files as $file) {
-			$relatedFiles[] = array(
-				'file' => 'uploads/media/' . $file
-			);
+			// get DAM items
+			$files = $this->getDamItems($row['uid'], 'tx_damnews_dam_media');
+			foreach ($files as $damUid => $file) {
+				$relatedFiles[] = array(
+					'file' => $file
+				);
+			}
+		}
+
+		if (!empty($row['news_files'])) {
+			$files = GeneralUtility::trimExplode(',', $row['news_files']);
+
+			foreach ($files as $file) {
+				$relatedFiles[] = array(
+					'file' => 'uploads/media/' . $file
+				);
+			}
 		}
 
 		return $relatedFiles;
@@ -158,28 +169,53 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 	 */
 	protected function getMedia(array $row) {
 		$media = array();
+		$count = 0;
 
-		if (empty($row['image'])) {
-			return $media;
+		// tx_damnews_dam_images
+		if (!empty($row['tx_damnews_dam_images'])) {
+
+			// get DAM data
+			$files = $this->getDamItems($row['uid'], 'tx_damnews_dam_images');
+
+			$captions = GeneralUtility::trimExplode(chr(10), $row['imagecaption'], FALSE);
+			$alts = GeneralUtility::trimExplode(chr(10), $row['imagealttext'], FALSE);
+			$titles = GeneralUtility::trimExplode(chr(10), $row['imagetitletext'], FALSE);
+
+			foreach ($files as $damUid => $file) {
+				$media[] = array(
+					'title' => $titles[$count],
+					'alt' => $alts[$count],
+					'caption' => $captions[$count],
+					'image' => $file,
+					'type' => \Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM,
+					'showinpreview' => (int)$count == 0
+				);
+				$count++;
+			}
 		}
 
-		$images = GeneralUtility::trimExplode(',', $row['image'], TRUE);
-		$captions = GeneralUtility::trimExplode(chr(10), $row['imagecaption'], FALSE);
-		$alts = GeneralUtility::trimExplode(chr(10), $row['imagealttext'], FALSE);
-		$titles = GeneralUtility::trimExplode(chr(10), $row['imagetitletext'], FALSE);
+		if (!empty($row['image'])) {
+			$images = GeneralUtility::trimExplode(',', $row['image'], TRUE);
+			$captions = GeneralUtility::trimExplode(chr(10), $row['imagecaption'], FALSE);
+			$alts = GeneralUtility::trimExplode(chr(10), $row['imagealttext'], FALSE);
+			$titles = GeneralUtility::trimExplode(chr(10), $row['imagetitletext'], FALSE);
 
-		$i = 0;
-		foreach ($images as $image) {
-			$media[] = array(
-				'title' => $titles[$i],
-				'alt' => $alts[$i],
-				'caption' => $captions[$i],
-				'image' => 'uploads/pics/' . $image,
-				'type' => 0,
-				'showinpreview' => (int)$i == 0
-			);
-			$i ++;
+			$i = 0;
+			foreach ($images as $image) {
+				$media[] = array(
+					'title' => $titles[$i],
+					'alt' => $alts[$i],
+					'caption' => $captions[$i],
+					'image' => 'uploads/pics/' . $image,
+					'type' => 0,
+					'showinpreview' => (int)$count == 0
+				);
+				$i ++;
+				$count ++;
+			}
 		}
+
+		$media = array_merge($media, $this->getMultimediaItems($row));
 
 		return $media;
 	}
@@ -215,4 +251,56 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 		return $links;
 	}
 
+	/**
+	 * Get DAM file names
+	 *
+	 * @param $newsUid
+	 * @param $field
+	 * @return array
+	 */
+	protected function getDamItems($newsUid, $field) {
+
+		$files = array();
+
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query('tx_dam.uid, tx_dam.file_name, tx_dam.file_path',
+			'tx_dam', 'tx_dam_mm_ref', 'tt_news',
+			'AND tx_dam_mm_ref.tablenames="tt_news" AND tx_dam_mm_ref.ident="'.$field.'" ' .
+			'AND tx_dam_mm_ref.uid_foreign="' . $newsUid . '"', '', 'tx_dam_mm_ref.sorting_foreign ASC');
+
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			$files[$row['uid']] = $row['file_path'].$row['file_name'];
+		}
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+		return $files;
+	}
+
+	/**
+	 * Parse row for custom plugin info
+	 *
+	 * @param $row current row
+	 */
+	protected function getMultimediaItems($row) {
+
+		$media = array();
+
+		/**
+		 * Ext:jg_youtubeinnews
+		 */
+		if (!empty($row['tx_jgyoutubeinnews_embed'])) {
+			if (preg_match_all('#((http|https)://)?([a-zA-Z0-9\-]*\.)+youtube([a-zA-Z0-9\-]*\.)+[a-zA-Z0-9]{2,4}(/[a-zA-Z0-9=.?&_-]*)*#i', $row['tx_jgyoutubeinnews_embed'], $matches)) {
+				$matches = array_unique($matches[0]);
+				foreach ($matches as $url) {
+					$urlInfo = parse_url($url);
+					$media[] = array(
+						'type' => \Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA,
+						'multimedia' => $url,
+						'title' => $urlInfo['host'],
+					);
+				}
+			}
+		}
+
+		return $media;
+	}
 }
