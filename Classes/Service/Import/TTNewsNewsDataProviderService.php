@@ -65,7 +65,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
 			'tt_news',
-			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0 AND',
+			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0',
 			'',
 			'',
 			$offset . ',' . $limit
