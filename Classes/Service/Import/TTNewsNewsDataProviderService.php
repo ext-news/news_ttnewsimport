@@ -44,7 +44,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 	public function getTotalRecordCount() {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(*)',
 			'tt_news',
-			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0'
+			'deleted=0 AND t3ver_oid = 0 AND t3ver_wsid = 0'
 		);
 
 		list($count) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
@@ -65,7 +65,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
 			'tt_news',
-			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0',
+			'deleted=0 AND t3ver_oid = 0 AND t3ver_wsid = 0',
 			'',
 			'',
 			$offset . ',' . $limit
@@ -80,6 +80,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 				'sys_language_uid' => $row['sys_language_uid'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
+				'fe_group'  => $row['fe_group'],
 				'title' => $row['title'],
 				'teaser' => $row['short'],
 				'bodytext' => str_replace('###YOUTUBEVIDEO###', '', $row['bodytext']),
@@ -279,6 +280,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 	 * Parse row for custom plugin info
 	 *
 	 * @param $row current row
+	 * @return array
 	 */
 	protected function getMultimediaItems($row) {
 
