@@ -1,0 +1,11 @@
+# This is the project specific Settings.yml file.
+# Place Sphinx specific build information here.
+# Settings given here will replace the settings of 'conf.py'.
+
+---
+conf.py:
+  copyright: 2014
+  project: News tt_news import
+  version: 1.0.0
+  release: 0.0.1
+...

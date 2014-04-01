@@ -39,7 +39,8 @@ class TTNewsNewsImportJobTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
 	 * @return void
 	 */
 	public function getNumberOfRecordsPerRunReturnsExpectedValue() {
-		$jobInstance = $this->objectManager->get('BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsNewsImportJob');
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$jobInstance = $objectManager->get('BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsNewsImportJob');
 		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
 	}
 }
