@@ -73,6 +73,8 @@ class TTNewsCategoryDataProviderService implements \Tx_News_Service_Import_DataP
 			$importData[] = array(
 				'pid' => $row['pid'],
 				'hidden' => $row['hidden'],
+				'tstamp' => $row['tstamp'],
+				'crdate' => $row['crdate'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
 				'title_lang_ol'  => $row['title_lang_ol'],

@@ -76,6 +76,9 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 			$importData[] = array(
 				'pid' => $row['pid'],
 				'hidden' => $row['hidden'],
+				'tstamp' => $row['tstamp'],
+				'crdate' => $row['crdate'],
+				'cruser_id' => $row['cruser_id'],
 				'l10n_parent' => $row['l18n_parent'],
 				'sys_language_uid' => $row['sys_language_uid'],
 				'starttime' => $row['starttime'],
