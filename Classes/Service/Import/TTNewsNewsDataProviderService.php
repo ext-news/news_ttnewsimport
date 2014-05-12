@@ -191,7 +191,6 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 					'alt' => $alts[$count],
 					'caption' => $captions[$count],
 					'image' => $file,
-					'type' => \Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM,
 					'showinpreview' => (int)$count == 0
 				);
 				$count++;
