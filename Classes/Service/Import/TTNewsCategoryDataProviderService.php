@@ -80,7 +80,7 @@ class TTNewsCategoryDataProviderService implements \Tx_News_Service_Import_DataP
 				'title_lang_ol'  => $row['title_lang_ol'],
 				'title'	=>	$row['title'],
 				'description' => $row['description'],
-				'image' => $row['image'],
+				'image' => $row['image'] ? 'uploads/pics/' . $row['image'] : '',
 				'shortcut' => $row['shortcut'],
 				'single_pid' => $row['single_pid'],
 				'parentcategory' => $row['parent_category'],
