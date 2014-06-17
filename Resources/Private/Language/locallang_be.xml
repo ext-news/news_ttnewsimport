@@ -6,23 +6,23 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="ttnews_importer_title">Import tt_news news records (with DAM -> FAL support)</label>
-			<label index="ttnewscategory_importer_title">Import tt_news category records (with DAM -> FAL support)</label>
+			<label index="ttnews_importer_title">Import tt_news news records</label>
+			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
 		</languageKey>
 
 		<languageKey index="da" type="array">
-			<label index="ttnews_importer_title">Import af tt_news news elementer (med DAM -> FAL support)</label>
-			<label index="ttnewscategory_importer_title">Import af tt_news kategori-elementer (med DAM -> FAL support)</label>
+			<label index="ttnews_importer_title">Import af tt_news news elementer</label>
+			<label index="ttnewscategory_importer_title">Import af tt_news kategori-elementer</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">
-			<label index="ttnews_importer_title">Import von tt_news Datensätzen (mit DAM -> FAL support)</label>
-			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien (mit DAM -> FAL support)</label>
+			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
+			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
 		</languageKey>
 
 		<languageKey index="nl" type="array">
-			<label index="ttnews_importer_title">Importeer tt_news records (met DAM -> FAL support)</label>
-			<label index="ttnewscategory_importer_title">Importeer tt_news categorie records (met DAM -> FAL support)</label>
+			<label index="ttnews_importer_title">Importeer tt_news records</label>
+			<label index="ttnewscategory_importer_title">Importeer tt_news categorie records</label>
 		</languageKey>
 	</data>
 </T3locallang>
