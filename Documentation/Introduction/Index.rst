@@ -19,6 +19,7 @@ Features
 - DAM support, images and files will be converted to ext:news (FAL)media elements
 - Converts jg_youtubeinnews YouTube links to ext:news media elements
 - Converts tl_news_linktext related links to ext:news link elements
+- Imports data from EXT:mbl_newsevent to the available fields of EXT:roq_newsevent (News event extension for EXT:news)
 
 Requirements
 ------------

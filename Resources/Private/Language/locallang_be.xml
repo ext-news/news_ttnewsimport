@@ -8,6 +8,7 @@
 		<languageKey index="default" type="array">
 			<label index="ttnews_importer_title">Import tt_news news records</label>
 			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
+			<label index="mblnewsevent_importer_title">Import mbl_newsevent data to existing news records</label>
 		</languageKey>
 
 		<languageKey index="da" type="array">
@@ -18,6 +19,7 @@
 		<languageKey index="de" type="array">
 			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
 			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
+			<label index="mblnewsevent_importer_title">Import von mbl_newsevent Daten in bestehende News-Records</label>
 		</languageKey>
 
 		<languageKey index="nl" type="array">
