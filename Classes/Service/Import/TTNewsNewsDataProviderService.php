@@ -98,7 +98,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 				'categories' => $this->getCategories($row['uid']),
 				'media' => $this->getMedia($row),
 				'related_files' => $this->getFiles($row),
-				'related_links' => $this->getRelatedLinks($row['links']),
+				'related_links' => array_key_exists('tx_tlnewslinktext_linktext', $row) ? $this->getRelatedLinksTlNewsLinktext($row['links'], $row['tx_tlnewslinktext_linktext']) : $this->getRelatedLinks($row['links']),
 				'content_elements' => $row['tx_rgnewsce_ce'],
 				'import_id' => $row['uid'],
 				'import_source' => $this->importSource
@@ -250,6 +250,39 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 				'title' => $title,
 				'description' => '',
 			);
+		}
+		return $links;
+	}
+
+	/**
+	 * Get link elements to be imported when using EXT:tl_news_linktext
+	 * This extension adds an additional field for link texts that are separated by a line break
+	 *
+	 * @param string $newsLinks
+	 * @param string $newsLinksTexts
+	 * @return array
+	 */
+	protected function getRelatedLinksTlNewsLinktext($newsLinks, $newsLinksTexts) {
+		$links = array();
+
+		if (empty($newsLinks)) {
+			return $links;
+		}
+
+		$newsLinks = str_replace("\r\n", "\n", $newsLinks);
+		$newsLinksTexts = str_replace("\r\n", "\n", $newsLinksTexts);
+
+		$linkList = GeneralUtility::trimExplode("\n", $newsLinks, TRUE);
+		$linkTextList = GeneralUtility::trimExplode("\n", $newsLinksTexts, TRUE);
+
+		$iterator = 0;
+		foreach ($linkList as $uri) {
+			$links[] = array(
+				'uri' => $uri,
+				'title' => array_key_exists($iterator, $linkTextList) ? $linkTextList[$iterator] : $uri,
+				'description' => '',
+			);
+			$iterator++;
 		}
 		return $links;
 	}

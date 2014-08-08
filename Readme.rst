@@ -9,6 +9,7 @@ This is an extraction of the tt_news importer code original from `EXT:News` enha
 
 - DAM support
 - Converts jg_youtubeinnews YouTube links to ext:news media elements
+- Converts tl_news_linktext related links to ext:news link elements
 
 **Requirements**
 
