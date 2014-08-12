@@ -60,10 +60,11 @@ class DamMediaTagConversionService extends \Tx_News_Domain_Service_AbstractImpor
 		$dataHandler = GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler');
 
 		foreach ($importData as $newsRecord) {
-			$results = preg_match_all('/<media ([0-9]{1,}) (.*?)>(.*?)<\/media>/', $newsRecord['bodytext'], $matches);
+			$results = preg_match_all('/<media ([0-9]{1,})(.*?)>(.*?)<\/media>/', $newsRecord['bodytext'], $matches);
+
 			if ($results) {
 				foreach ($matches[0] as $key => $mediaTag) {
-					$linkTag = '<link file:' . $this->getUidOfSysFileRecord($matches[1][$key]) . ' ' . $matches[2][$key] . '>' . $matches[3][$key] . '</link>';
+					$linkTag = '<link file:' . $this->getUidOfSysFileRecord(trim($matches[1][$key])) . ' ' . $matches[2][$key] . '>' . $matches[3][$key] . '</link>';
 					$newsRecord['bodytext'] = str_replace($mediaTag, $linkTag, $newsRecord['bodytext']);
 				}
 				$data = array();
