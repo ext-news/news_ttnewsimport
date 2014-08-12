@@ -46,8 +46,7 @@ class DamMediaTagConversionService extends \Tx_News_Domain_Service_AbstractImpor
 	/**
 	 * Import
 	 *
-	 * We don't use the Extbase repository here because we only write additional data to News records and
-	 * cannot be sure if the Extbase objects configuration for EXT:roq_newsevent is properly loaded at this point
+	 * This converts <media>-Tags of DAM to <link file:XXX> tags referencing a sys_file
 	 *
 	 * @param array $importData
 	 * @param array $importItemOverwrite
