@@ -15,3 +15,7 @@ if (!defined('TYPO3_MODE')) {
 	'BeechIt\\NewsTtnewsimport\\Jobs\\MblNewseventImportJob',
 	'LLL:EXT:news_ttnewsimport/Resources/Private/Language/locallang_be.xml:mblnewsevent_importer_title',
 	'');
+\Tx_News_Utility_ImportJob::register(
+	'BeechIt\\NewsTtnewsimport\\Jobs\\DamMediaTagConversionJob',
+	'LLL:EXT:news_ttnewsimport/Resources/Private/Language/locallang_be.xml:dammediatag_converter_title',
+	'');
