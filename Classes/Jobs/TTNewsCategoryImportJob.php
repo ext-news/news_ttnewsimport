@@ -47,10 +47,10 @@ class TTNewsCategoryImportJob extends \Tx_News_Jobs_AbstractImportJob {
 	/**
 	 * Inject import service
 	 *
-	 * @param \Tx_News_Domain_Service_CategoryImportService $importService
+	 * @param \BeechIt\NewsTtnewsimport\Service\Import\TTNewsCategoryImportService $importService
 	 * @return void
 	 */
-	public function injectImportService(\Tx_News_Domain_Service_CategoryImportService $importService) {
+	public function injectImportService(\BeechIt\NewsTtnewsimport\Service\Import\TTNewsCategoryImportService $importService) {
 		$this->importService = $importService;
 	}
 }
