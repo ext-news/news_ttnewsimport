@@ -46,9 +46,6 @@ class MblNewseventNativeImportService extends \Tx_News_Domain_Service_AbstractIm
 	/**
 	 * Import
 	 *
-	 * We don't use the Extbase repository here because we only write additional data to News records and
-	 * cannot be sure if the Extbase objects configuration for EXT:roq_newsevent is properly loaded at this point
-	 *
 	 * @param array $importData
 	 * @param array $importItemOverwrite
 	 * @param array $settings
