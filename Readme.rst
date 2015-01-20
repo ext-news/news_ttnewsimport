@@ -1,5 +1,5 @@
 TYPO3 extension "news_ttnewsimport"
-=====================
+===================================
 
 EXT:News tt\_news importer.
 
