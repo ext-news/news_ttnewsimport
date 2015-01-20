@@ -30,7 +30,7 @@ namespace BeechIt\NewsTtnewsimport\Tests\Unit\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsNewsImportJobTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class TTNewsNewsImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test getNumberOfRecordsPerRunReturnsExpectedValue
@@ -39,8 +39,7 @@ class TTNewsNewsImportJobTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
 	 * @return void
 	 */
 	public function getNumberOfRecordsPerRunReturnsExpectedValue() {
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$jobInstance = $objectManager->get('BeechIt\\NewsTtnewsimport\\Jobs\\TTNewsNewsImportJob');
+		$jobInstance = new \BeechIt\NewsTtnewsimport\Jobs\TTNewsNewsImportJob();
 		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
 	}
 }
