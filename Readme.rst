@@ -16,3 +16,26 @@ This is an extraction of the tt_news importer code original from `EXT:News` enha
 
 - TYPO3 CMS >= 6.2
 - Ext:News >= 3.0
+
+# plugin migration
+
+not supported:
+
+orderBy: archivedate ,author,,type,random,
+
+
+// not migrated
+//    [croppingLenghtOptionSplit] =>
+//    [firstImageIsPreview] => 0
+//    [forceFirstImageIsPreview] => 0
+//    [myTS] =>
+//    [template_file] =>
+//    [altLayoutsOptionSplit] =>
+//    [maxWordsInSingleView] =>
+//    [catImageMode] =>
+//    [catImageMaxWidth] =>
+//    [catImageMaxHeight] =>
+//    [maxCatImages] =>
+//    [catTextMode] =>
+//    [maxCatTexts] =>
+//    [alternatingLayouts] =>
