@@ -10,6 +10,7 @@
 			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
 			<label index="mblnewsevent_importer_title">Import mbl_newsevent data to existing news records (requires roq_newsevent)</label>
 			<label index="dammediatag_converter_title">Convert DAM media tags in imported news records to FAL link tags</label>
+			<label index="mblnewsevent_native_importer_title">Import mbl_newsevent datetime and archivedate to EXT:news (must handle is_event manually).</label>
 		</languageKey>
 
 		<languageKey index="da" type="array">
