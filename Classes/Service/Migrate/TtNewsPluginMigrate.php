@@ -32,7 +32,13 @@ class TtNewsPluginMigrate {
 	}
 
 	public function run() {
-		$rows = $this->getDatabaseConnection()->exec_SELECTgetRows('*', 'tt_content', 'deleted=0 AND list_type="9" AND CType="list"');
+		$rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
+			'*',
+			'tt_content',
+			'deleted=0 AND list_type="9" AND CType="list"',
+			'',
+			'sys_language_uid ASC'
+		);
 
 		foreach ($rows as $pluginRow) {
 			if ($pluginRow['news_ttnewsimport_new_id'] == 0) {
@@ -62,9 +68,18 @@ class TtNewsPluginMigrate {
 			$update[$fieldName] = $row[$fieldName];
 		}
 
+		// if the content element is a translation and got a parent, set the correct parent
+		if ($row['sys_language_uid'] > 0 && $row['l18n_parent'] > 0) {
+			$parentRow = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
+				'uid',
+				'tt_content',
+				'news_ttnewsimport_new_id=' . $row['l18n_parent']);
+			if (is_array($parentRow)) {
+				$update['l18n_parent'] = $parentRow['uid'];
+			}
+		}
+
 		$this->getDatabaseConnection()->exec_UPDATEquery('tt_content', 'uid=' . $row['news_ttnewsimport_new_id'], $update);
-		// todo: field l18n_parent
-//		die;
 	}
 
 	/**
@@ -95,7 +110,7 @@ class TtNewsPluginMigrate {
 					$this->addFieldToArray($new, $this->getValueMap($key, $value), 'settings.categoryConjunction');
 					break;
 				case 'categorySelection':
-					// TODO
+					$this->addFieldToArray($new, $this->getSysCategoryIdList($value), 'settings.categories');
 					break;
 				case 'useSubCategories':
 					$this->addFieldToArray($new, (int)$value, 'settings.includeSubCategories');
@@ -150,6 +165,29 @@ class TtNewsPluginMigrate {
 
 	protected function addFieldToArray(&$array, $value, $field, $sheet = 'sDEF') {
 		$array['data'][$sheet]['lDEF'][$field]['vDEF'] = $value;
+	}
+
+	/**
+	 * Get the id list of the migrated categories
+	 *
+	 * @param string $idList
+	 * @return string
+	 */
+	protected function getSysCategoryIdList($idList) {
+		if (empty($idList)) {
+			return '';
+		}
+		$newIdList = array();
+		$categoryRows = $this->getDatabaseConnection()->exec_SELECTgetRows(
+			'uid,title,import_id',
+			'sys_category',
+			'deleted=0 AND import_source="TT_NEWS_CATEGORY_IMPORT" AND import_id IN('
+			. $this->getDatabaseConnection()->cleanIntList($idList) . ')');
+		foreach ($categoryRows as $row) {
+			$newIdList[] = $row['uid'];
+		}
+
+		return implode(',', $newIdList);
 	}
 
 	/** @var array */
