@@ -77,8 +77,24 @@ Be aware that not all options are migrated. Supported are:
 Usage
 ^^^^^
 
-`./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:check` will give you some information about how many plugins are still to be migrated
+**Important:** Run the plugin migration **after** the record migration!
 
-`./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:run` will create the plugins for *EXT:news* by creating a new record below the plugin of *EXT:tt_news*. This makes it possible for you to cross check the migration and adapt the plugins.
+.. code-block:: bash
 
-`./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins` will hide the old plugins by setting them to **hidden**. Using the argument `delete=1` will delete them.
+	# Gives you some information about how many plugins are still to be migrated
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:check
+
+.. code-block:: bash
+
+	# Creates the plugins for *EXT:news* by creating a new record below the plugin of *EXT:tt_news*.
+	# This makes it possible for you to cross check the migration and adapt the plugins.
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:run
+
+.. code-block:: bash
+
+	# Hide the old tt_news plugins.
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins
+
+	# Deletes the old tt_news plugins.
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins delete=1
+
