@@ -67,7 +67,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 			'tt_news',
 			'deleted=0 AND t3ver_oid = 0 AND t3ver_wsid = 0',
 			'',
-			'',
+			'sys_language_uid ASC',
 			$offset . ',' . $limit
 		);
 

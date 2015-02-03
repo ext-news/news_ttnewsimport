@@ -116,7 +116,7 @@ class TtNewsPluginMigrate {
 					$this->addFieldToArray($new, (int)$value, 'settings.includeSubCategories');
 					break;
 				case 'archive':
-					$this->addFieldToArray($new, $this->getValueMap($key, $value), 'settings.categoryConjunction');
+					$this->addFieldToArray($new, $this->getValueMap($key, $value), 'settings.archiveRestriction');
 					break;
 				case 'imageMaxWidth':
 					$this->addFieldToArray($new, $value, 'settings.media.maxWidth', 'template');
