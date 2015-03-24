@@ -59,7 +59,7 @@ class TTNewsCategoryImportService extends \Tx_News_Domain_Service_CategoryImport
 
 		$data = array();
 
-		foreach ($beGroupsOrUsersWithTtNewsCategorymounts as $beGroupOrUser) {
+		foreach ((array)$beGroupsOrUsersWithTtNewsCategorymounts as $beGroupOrUser) {
 			$ttNewsCategoryPermissions = GeneralUtility::trimExplode(',', $beGroupOrUser['tt_news_categorymounts']);
 			$sysCategoryPermissions = array();
 			foreach ($ttNewsCategoryPermissions as $ttNewsCategoryPermissionUid) {
