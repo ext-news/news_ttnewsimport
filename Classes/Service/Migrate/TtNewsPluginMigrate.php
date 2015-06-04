@@ -35,7 +35,7 @@ class TtNewsPluginMigrate {
 		$rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
 			'*',
 			'tt_content',
-			'deleted=0 AND list_type="9" AND CType="list"',
+			'deleted=0 AND hidden=0 AND list_type="9" AND CType="list"',
 			'',
 			'sys_language_uid ASC'
 		);
