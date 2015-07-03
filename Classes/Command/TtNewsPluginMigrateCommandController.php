@@ -53,7 +53,7 @@ class TtNewsPluginMigrateCommandController extends \TYPO3\CMS\Extbase\Mvc\Contro
 	 * @param bool $delete Set to TRUE to delete the plugins instead of hiding
 	 */
 	public function removeOldPluginsCommand($delete = FALSE) {
-		$update = $delete ? array('delete' => 1) : array('hidden' => 1);
+		$update = $delete ? array('deleted' => 1) : array('hidden' => 1);
 		$this->getDatabaseConnection()->exec_UPDATEquery('tt_content', self::WHERE_CLAUSE, $update);
 	}
 
