@@ -81,6 +81,7 @@ class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProvi
 				'cruser_id' => $row['cruser_id'],
 				'l10n_parent' => $row['l18n_parent'],
 				'sys_language_uid' => $row['sys_language_uid'],
+				'sorting' => array_key_exists('sorting', $row) ? $row['sorting'] : 0,
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
 				'fe_group'  => $row['fe_group'],
