@@ -1,0 +1,23 @@
+{
+  "name": "beechit/news-ttnewsimport",
+  "type": "typo3-cms-extension",
+  "description": "Importer of ext:tt_news items to ext:news",
+  "homepage": "https://github.com/fsaris/news_ttnewsimport",
+  "license": "GPL-2.0+",
+  "keywords": ["TYPO3 CMS"],
+  "require": {
+    "typo3/cms-core": ">=6.2.4",
+    "georgringer/news": ">=3.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BeechIt\\NewsTtnewsimport\\": "Classes"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
+
