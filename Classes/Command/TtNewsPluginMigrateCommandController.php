@@ -75,7 +75,7 @@ class TtNewsPluginMigrateCommandController extends \TYPO3\CMS\Extbase\Mvc\Contro
 	 * @param string $char
 	 */
 	protected function outputDashedLine($char = '-') {
-		$this->outputLine(str_repeat($char, self::MAXIMUM_LINE_LENGTH));
+		$this->outputLine(str_repeat($char, 79));
 	}
 
 	/**
