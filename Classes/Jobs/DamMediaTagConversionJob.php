@@ -13,6 +13,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Service\AbstractImportService;
 
 /**
  * Import job
@@ -20,7 +21,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class DamMediaTagConversionJob extends \Tx_News_Jobs_AbstractImportJob {
+class DamMediaTagConversionJob extends AbstractImportService {
 	/**
 	 * @var int
 	 */

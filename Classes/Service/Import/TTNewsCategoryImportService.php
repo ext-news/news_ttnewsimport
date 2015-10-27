@@ -12,6 +12,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Service\CategoryImportService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -22,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage tx_news
  * @author Lorenz Ulrich <lorenz.ulrich@visol.ch>
  */
-class TTNewsCategoryImportService extends \Tx_News_Domain_Service_CategoryImportService {
+class TTNewsCategoryImportService extends CategoryImportService {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
