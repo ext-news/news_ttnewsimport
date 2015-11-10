@@ -32,6 +32,9 @@ Usage
 * After installing the extension, switch to the module "**News Import**".
 * Select the wizard you need and press *Start*.
 
+Important: First start import of categories if any. Afterwards reopen the module to import news.
+If you don't reopen the module, some news can be imported twice.
+
 
 Plugin migration
 ----------------
