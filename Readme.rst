@@ -95,6 +95,11 @@ Usage
 
 .. code-block:: bash
 
+	# Replace tt_news plugins directly without creating copies. 
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:replace
+
+.. code-block:: bash
+
 	# Hide the old tt_news plugins.
 	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins
 
