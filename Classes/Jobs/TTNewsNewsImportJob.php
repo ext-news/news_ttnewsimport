@@ -30,7 +30,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsNewsImportJob extends \Tx_News_Jobs_AbstractImportJob {
+class TTNewsNewsImportJob extends \GeorgRinger\News\Jobs\AbstractImportJob {
 	/**
 	 * @var int
 	 */
@@ -55,10 +55,10 @@ class TTNewsNewsImportJob extends \Tx_News_Jobs_AbstractImportJob {
 	/**
 	 * Inject import service
 	 *
-	 * @param \Tx_News_Domain_Service_NewsImportService $importService
+	 * @param \GeorgRinger\News\Domain\Service\NewsImportService $importService
 	 * @return void
 	 */
-	public function injectImportService(\Tx_News_Domain_Service_NewsImportService $importService) {
+	public function injectImportService(\GeorgRinger\News\Domain\Service\NewsImportService $importService) {
 		$this->importService = $importService;
 	}
 }
