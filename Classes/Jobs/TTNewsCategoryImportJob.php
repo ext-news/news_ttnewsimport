@@ -23,6 +23,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use GeorgRinger\News\Jobs\AbstractImportJob;
 
 /**
  * Import job
@@ -30,7 +31,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsCategoryImportJob extends \Tx_News_Jobs_AbstractImportJob {
+class TTNewsCategoryImportJob extends AbstractImportJob {
 
 	/**
 	 * Inject import dataprovider service
