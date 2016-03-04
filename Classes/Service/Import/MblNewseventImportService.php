@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage tx_news
  * @author Lorenz Ulrich <lorenz.ulrich@visol.ch>
  */
-class MblNewseventImportService extends \Tx_News_Domain_Service_AbstractImportService {
+class MblNewseventImportService extends \GeorgRinger\News\Domain\Service\AbstractImportService {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
@@ -29,7 +29,7 @@ class MblNewseventImportService extends \Tx_News_Domain_Service_AbstractImportSe
 	protected $databaseConnection;
 
 	/**
-	 * @var \Tx_News_Domain_Repository_NewsRepository
+	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
 	 * @inject
 	 */
 	protected $newsRepository;
