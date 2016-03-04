@@ -30,7 +30,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsCategoryImportJob extends \Tx_News_Jobs_AbstractImportJob {
+class TTNewsCategoryImportJob extends \GeorgRinger\News\Jobs\AbstractImportJob {
 
 	/**
 	 * Inject import dataprovider service
