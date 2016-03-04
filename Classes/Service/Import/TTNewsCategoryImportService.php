@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage tx_news
  * @author Lorenz Ulrich <lorenz.ulrich@visol.ch>
  */
-class TTNewsCategoryImportService extends \Tx_News_Domain_Service_CategoryImportService {
+class TTNewsCategoryImportService extends \GeorgRinger\News\Domain\Service\CategoryImportService {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection

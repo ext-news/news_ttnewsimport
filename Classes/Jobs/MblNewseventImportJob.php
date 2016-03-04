@@ -30,7 +30,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class MblNewseventImportJob extends \Tx_News_Jobs_AbstractImportJob {
+class MblNewseventImportJob extends \GeorgRinger\News\Jobs\AbstractImportJob {
 	/**
 	 * @var int
 	 */

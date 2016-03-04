@@ -20,7 +20,7 @@ namespace BeechIt\NewsTtnewsimport\Jobs;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class DamMediaTagConversionJob extends \Tx_News_Jobs_AbstractImportJob {
+class DamMediaTagConversionJob extends \GeorgRinger\News\Jobs\AbstractImportJob {
 	/**
 	 * @var int
 	 */

@@ -20,7 +20,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class DamMediaTagDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
+class DamMediaTagDataProviderService implements \GeorgRinger\News\Service\Import\DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
 
 	/**
 	 * Get total record count

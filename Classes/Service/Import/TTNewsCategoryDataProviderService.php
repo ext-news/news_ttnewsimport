@@ -30,7 +30,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsCategoryDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
+class TTNewsCategoryDataProviderService implements \GeorgRinger\News\Service\Import\DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
 
 	protected $importSource = 'TT_NEWS_CATEGORY_IMPORT';
 
