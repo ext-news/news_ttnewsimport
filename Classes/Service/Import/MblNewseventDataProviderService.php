@@ -32,7 +32,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class MblNewseventDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
+class MblNewseventDataProviderService implements \GeorgRinger\News\Service\Import\DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
 
 	/**
 	 * Get total record count
