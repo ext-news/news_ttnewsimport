@@ -13,6 +13,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\Import\DataProviderServiceInterface;
 
 /**
  * tt_news ImportService
@@ -20,7 +21,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class DamMediaTagDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
+class DamMediaTagDataProviderService implements DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
 
 	/**
 	 * Get total record count
