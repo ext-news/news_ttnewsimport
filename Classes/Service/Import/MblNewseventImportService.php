@@ -12,6 +12,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Jobs\AbstractImportJob;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -21,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage tx_news
  * @author Lorenz Ulrich <lorenz.ulrich@visol.ch>
  */
-class MblNewseventImportService extends \Tx_News_Domain_Service_AbstractImportService {
+class MblNewseventImportService extends AbstractImportJob {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
@@ -29,7 +30,7 @@ class MblNewseventImportService extends \Tx_News_Domain_Service_AbstractImportSe
 	protected $databaseConnection;
 
 	/**
-	 * @var \Tx_News_Domain_Repository_NewsRepository
+	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
 	 * @inject
 	 */
 	protected $newsRepository;
@@ -39,8 +40,6 @@ class MblNewseventImportService extends \Tx_News_Domain_Service_AbstractImportSe
 		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
 		$this->logger = $logger;
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
-
-		parent::__construct();
 	}
 
 	/**

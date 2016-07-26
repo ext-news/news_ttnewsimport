@@ -24,6 +24,7 @@ namespace BeechIt\NewsTtnewsimport\Service\Import;
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use GeorgRinger\News\Service\Import\DataProviderServiceInterface;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -32,7 +33,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage news_ttnewsimport
  */
-class TTNewsNewsDataProviderService implements \Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
+class TTNewsNewsDataProviderService implements DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface  {
 
 	protected $importSource = 'TT_NEWS_IMPORT';
 
