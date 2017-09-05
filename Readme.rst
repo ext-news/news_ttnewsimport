@@ -105,4 +105,10 @@ Usage
 
 	# Deletes the old tt_news plugins.
 	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins delete=1
+	
+
+Known issues
+^^^^^^^^^^^^
+see FAQ Section in
+Documentation/Misc/Index.rst
 
