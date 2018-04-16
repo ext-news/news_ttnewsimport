@@ -296,7 +296,12 @@ class TtNewsPluginMigrate
         $dataHandler->admin = 1;
         $dataHandler->process_datamap();
         if (!empty($dataHandler->errorLog)) {
-            $this->logger->error('Error(s) while creating the empty content element');
+            $this->logger->error(
+                sprintf(
+                    'Error(s) while creating the empty content element for uid=%s',
+                    $row['uid']
+                )
+            );
             foreach ($dataHandler->errorLog as $log) {
                 $this->logger->error($log);
             }
