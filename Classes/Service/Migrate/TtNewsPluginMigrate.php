@@ -159,7 +159,7 @@ class TtNewsPluginMigrate
                     $this->addFieldToArray($new, $value, 'settings.detailPid', 'additional');
                     break;
                 case 'backPid':
-                    $this->addFieldToArray($new, $value, 'settings.backPid');
+                    $this->addFieldToArray($new, $value, 'settings.backPid', 'additional');
                     break;
                 case 'pages':
                     $this->addFieldToArray($new, $value, 'settings.startingpoint');
