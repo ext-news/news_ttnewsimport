@@ -220,7 +220,7 @@ class TtNewsPluginMigrate
         'what_to_display' => array(
             'LIST' => 'News->list',
             'LIST2' => 'News->list',
-            'LIST23' => 'News->list',
+            'LIST3' => 'News->list',
             'HEADER_LIST' => 'News->list',
             'LATEST' => 'News->list',
             'SINGLE' => 'News->detail',
