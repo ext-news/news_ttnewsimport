@@ -46,9 +46,9 @@ class RealUrlUniqueAliasMigrationCommandController extends CommandController
         $queries[] = 'DELETE FROM tx_realurl_uniqalias_migration WHERE tablename=\'tx_news_domain_model_news\' AND value_id=0;';
         // Insert alias back into realurl table
         // RealUrl version < 2.0
-        #$queries[] = 'INSERT INTO tx_realurl_uniqalias (tstamp,tablename,field_id,value_alias,value_id,lang,expire) SELECT tstamp,tablename,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
+        #$queries[] = 'INSERT INTO tx_realurl_uniqalias (tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
         // RealUrl version >= 2.0 
-        $queries[] = 'INSERT INTO tx_realurl_uniqalias (pid,tablename,field_id,value_alias,value_id,lang,expire) SELECT pid,tablename,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
+        $queries[] = 'INSERT INTO tx_realurl_uniqalias (pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
         // Drop temporarly table
         $queries[] = 'DROP TABLE tx_realurl_uniqalias_migration;';
         // Run each query
