@@ -49,7 +49,7 @@ class RealUrlUniqueAliasMigrationCommandController extends CommandController
         #$queries[] = 'INSERT INTO tx_realurl_uniqalias (tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
         // RealUrl version >= 2.0 
         $queries[] = 'INSERT INTO tx_realurl_uniqalias (pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
-        // Drop temporarly table
+        // Drop temporary table
         $queries[] = 'DROP TABLE tx_realurl_uniqalias_migration;';
         // Run each query
         $countSuccessfulExecutedQueries = 0;
