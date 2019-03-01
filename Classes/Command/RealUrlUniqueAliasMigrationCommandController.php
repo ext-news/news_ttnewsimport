@@ -46,10 +46,10 @@ class RealUrlUniqueAliasMigrationCommandController extends CommandController
         $queries[] = 'DELETE FROM tx_realurl_uniqalias_migration WHERE tablename=\'tx_news_domain_model_news\' AND value_id=0;';
         // Insert alias back into realurl table
         // RealUrl version < 2.0
-        #$queries[] = 'INSERT INTO tx_realurl_uniqalias (tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT tstamp,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
+        #$queries[] = 'INSERT INTO tx_realurl_uniqalias (tstamp,tablename,field_id,value_alias,value_id,lang,expire) SELECT tstamp,tablename,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
         // RealUrl version >= 2.0 
-        $queries[] = 'INSERT INTO tx_realurl_uniqalias (pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire) SELECT pid,tablename,field_alias,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
-        // Drop temporary table
+        $queries[] = 'INSERT INTO tx_realurl_uniqalias (pid,tablename,field_id,value_alias,value_id,lang,expire) SELECT pid,tablename,field_id,value_alias,value_id,lang,expire FROM tx_realurl_uniqalias_migration;';
+        // Drop temporarly table
         $queries[] = 'DROP TABLE tx_realurl_uniqalias_migration;';
         // Run each query
         $countSuccessfulExecutedQueries = 0;
@@ -73,7 +73,8 @@ class RealUrlUniqueAliasMigrationCommandController extends CommandController
      * Copies realurl alias to news where path_segment if is empty.
      * Requires, that path_segment was not automaticly filled before!
      * This can still lead in empty slugs field, which can be updated via installtool
-     * Use: Upgrade Wizard "Updates slug field 'path_segment' of EXT:news records" (identifier: ’newsSlug’) 
+     * Use: Upgrade Wizard "Updates slug field 'path_segment' of EXT:news records" (identifier: ’newsSlug’)
+
      * Or helhum/typo3-console: '$ typo3cms upgrade:wizard newsSlug'
      *
      * @return void
