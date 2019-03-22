@@ -153,13 +153,6 @@ The update routine from EXT:news_falttnewsimport is implemented as command and c
 	# Migrate fal_ttnews entries
 	./typo3/cli_dispatch.phpsh extbase falttnewsmigration:migratefalttnews
 
-In case of EXT:tt_news plugin setting `forceFirstImageIsPreview` was used, and similar feature requires for EXT:news, each first `fal_media` entry for each news entries must be set to `showinpreview = 1` (compatible wit EXT:news v7.x):
-
-.. code-block:: bash
-
-	# Set showinpreview for first news.fal_media
-	./typo3/cli_dispatch.phpsh extbase falmediashowinpreview:setfirstfalmediashowinpreview
-
 RealUrl & Routing
 ^^^^^^^^^^^^^^^^^
 
