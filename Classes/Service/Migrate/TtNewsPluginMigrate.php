@@ -1,6 +1,7 @@
 <?php
 namespace BeechIt\NewsTtnewsimport\Service\Migrate;
 
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -38,6 +39,23 @@ class TtNewsPluginMigrate
         $rows = $this->getTtnewsPluginRows();
 
         foreach ($rows as $pluginRow) {
+            // check if plugin type is search - so we have to split it to two plugins
+            $flexformArray = GeneralUtility::xml2array($pluginRow['pi_flexform']);
+            if($flexformArray['data']['sDEF']['lDEF']['what_to_display']['vDEF']=='SEARCH'){
+                $tmpResultPluginRow = $pluginRow;
+                $flexformArray['data']['sDEF']['lDEF']['what_to_display']['vDEF'] = 'TMP_SEARCH_RESULT';
+                $flexObj = GeneralUtility::makeInstance(FlexFormTools::class);
+                $flexFormXml = $flexObj->flexArray2Xml($flexformArray, true);
+                $tmpResultPluginRow['pi_flexform'] = $flexFormXml;
+
+                $tmpNewId = $this->createPluginBelowExisting($tmpResultPluginRow);
+                if ($tmpNewId === 0) {
+                    throw new \RuntimeException('An empty content element could not be created');
+                }
+                $tmpResultPluginRow['news_ttnewsimport_new_id'] = $tmpNewId;
+                $this->migrate($tmpResultPluginRow);
+            }
+
             if ($pluginRow['news_ttnewsimport_new_id'] == 0) {
                 $newId = $this->createPluginBelowExisting($pluginRow);
                 if ($newId === 0) {
@@ -228,6 +246,7 @@ class TtNewsPluginMigrate
             'VERSION_PREVIEW' => 'News->detail',
             'AMENU' => 'News->dateMenu',
             'SEARCH' => 'News->searchForm',
+            'TMP_SEARCH_RESULT' => 'News->searchResult',
             'CATMENU' => 'Category->list'
         ),
         'categoryMode' => array(
