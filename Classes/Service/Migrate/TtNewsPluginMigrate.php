@@ -16,7 +16,7 @@ class TtNewsPluginMigrate
     /** @var \TYPO3\CMS\Extbase\Service\FlexFormService */
     protected $flexFormService;
 
-    protected $fieldToCopy = 'header,CType,header_position,header_link,header_layout,bodytext,layout,starttime,endtime,pages,colPos,subheader,spaceBefore,spaceAfter,fe_group,sectionIndex,linkToTop,section_frame,date,recursive,sys_language_uid';
+    protected $fieldToCopy = 'header,CType,header_position,header_link,header_layout,bodytext,layout,starttime,endtime,pages,colPos,subheader,spaceBefore,spaceAfter,fe_group,sectionIndex,linkToTop,frame_class,date,recursive,sys_language_uid';
 
     protected $newsFlexConfig = array();
 
